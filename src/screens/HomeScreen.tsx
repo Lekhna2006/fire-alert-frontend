@@ -18,45 +18,45 @@ export function HomeScreen() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-  const deviceId = localStorage.getItem('deviceId');
+    const deviceId = localStorage.getItem('deviceId');
 
-  if (!deviceId) {
-    setError('Device ID not found');
-    return;
-  }
-
-  const fetchCurrentState = async () => {
-    try {
-      const response = await fetch(
-        `https://fire-alert-backend-1.onrender.com/api/current-state/${deviceId}`
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch current state');
-      }
-
-      const data = await response.json();
-
-      setCurrentState(data);
-      setError('');
-    } catch (error) {
-      setError('Unable to connect to server');
+    if (!deviceId) {
+      setError('Device ID not found');
+      return;
     }
-  };
 
-  // Fetch immediately when page opens
-  fetchCurrentState();
+    const fetchCurrentState = async () => {
+      try {
+        const response = await fetch(
+          `https://fire-alert-backend-1.onrender.com/api/current-state/${deviceId}`
+        );
 
-  // Then fetch every 5 seconds
-  const interval = setInterval(fetchCurrentState, 5000);
+        if (!response.ok) {
+          throw new Error('Failed to fetch current state');
+        }
 
-  // Stop polling when leaving Home page
-  return () => clearInterval(interval);
-}, []);
+        const data = await response.json();
+
+        setCurrentState(data);
+        setError('');
+      } catch (error) {
+        setError('Unable to connect to server');
+      }
+    };
+
+    // Fetch immediately when page opens
+    fetchCurrentState();
+
+    // Then fetch every 5 seconds
+    const interval = setInterval(fetchCurrentState, 5000);
+
+    // Stop polling when leaving Home page
+    return () => clearInterval(interval);
+  }, []);
 
   if (error) {
     return (
-      <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+      <div className="absolute inset-0 bg-neutral-50 flex flex-col">
         <AppBar title="Home" icon="home" />
 
         <div className="flex-1 flex items-center justify-center">
@@ -68,7 +68,7 @@ export function HomeScreen() {
 
   if (!currentState) {
     return (
-      <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+      <div className="absolute inset-0 bg-neutral-50 flex flex-col">
         <AppBar title="Home" icon="home" />
 
         <div className="flex-1 flex items-center justify-center">
@@ -91,7 +91,7 @@ export function HomeScreen() {
   );
 
   return (
-    <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+    <div className="absolute inset-0 bg-neutral-50 flex flex-col">
       <AppBar title="Home" icon="home" />
 
       <div className="flex-1 overflow-y-auto no-scrollbar p-4 pb-24">

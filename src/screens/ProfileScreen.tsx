@@ -51,7 +51,7 @@ export function ProfileScreen({ onLogout }: ProfileScreenProps) {
 
   if (error) {
     return (
-      <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+      <div className="absolute inset-0 bg-neutral-50 flex flex-col">
         <AppBar title="Profile" icon="person" />
 
         <div className="flex-1 flex items-center justify-center">
@@ -63,7 +63,7 @@ export function ProfileScreen({ onLogout }: ProfileScreenProps) {
 
   if (!user) {
     return (
-      <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+      <div className="absolute inset-0 bg-neutral-50 flex flex-col">
         <AppBar title="Profile" icon="person" />
 
         <div className="flex-1 flex items-center justify-center">
@@ -81,7 +81,7 @@ export function ProfileScreen({ onLogout }: ProfileScreenProps) {
     .toUpperCase();
 
   return (
-    <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+    <div className="absolute inset-0 bg-neutral-50 flex flex-col">
       <AppBar title="Profile" icon="person" />
 
       <div className="flex-1 overflow-y-auto no-scrollbar p-4 pb-24">

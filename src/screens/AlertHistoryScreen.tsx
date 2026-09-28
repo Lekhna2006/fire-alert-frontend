@@ -47,10 +47,11 @@ export function AlertHistoryScreen() {
 
     fetchAlerts();
 
-const interval = setInterval(fetchAlerts, 5000);
+    const interval = setInterval(fetchAlerts, 5000);
 
-return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleClear = async () => {
     const deviceId = localStorage.getItem('deviceId');
 
@@ -98,7 +99,7 @@ return () => clearInterval(interval);
   };
 
   return (
-    <div className="absolute inset-0 bg-neutral-50 flex flex-col pt-11">
+    <div className="absolute inset-0 bg-neutral-50 flex flex-col">
       <AppBar
         title="Alert History"
         icon="history"
@@ -124,6 +125,7 @@ return () => clearInterval(interval);
             <div className="h-14 w-14 rounded-2xl bg-neutral-100 flex items-center justify-center">
               <Icon name="history" size={28} className="text-neutral-400" />
             </div>
+
             <p className="mt-4 text-sm text-neutral-500">
               No alerts recorded
             </p>
